@@ -1,8 +1,22 @@
+language: node_js
+
+node_js:
+  - 4.8.7
+  - 5.12.0
+  - 6.11.5
+  - 7.10.1
+  - 8.9.4
+  - 9.5.0
+
 build:
-  pre_ci_boot:
-    image_name: drydockaarch64/u16cppall
-    image_tag: master
-    pull: true
   ci:
-    - gcc --version
-    - clang --version
+    - nvm ls
+    - uname -a
+    - node --version
+    - which npm
+    - npm -v
+    
+  pre_ci_boot:
+    image_name: drydock/c7nodall
+    image_tag: master
+    pull: true 
