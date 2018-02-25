@@ -1,8 +1,27 @@
+
+language: java
+
+jdk:
+  - openjdk7
+  - openjdk8 
+  - openjdk9  
+  - oraclejdk8
+  - oraclejdk9
+
 build:
+  pre_ci:
+    - echo 'true'
   pre_ci_boot:
-    image_name: drydockaarch64/u16cppall
+    image_name: drydock/c7javall
     image_tag: master
     pull: true
+    options: '--privileged=true --net=bridge -e FOO=true -e BOO=false'
+    
   ci:
-    - gcc --version
-    - clang --version
+    - echo "lang c"
+    - printenv
+    - java -version    
+    - nvm ls
+    - echo "nvm ls done"
+    - javac MyClass.java
+    - java MyClass
